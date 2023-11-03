@@ -3,6 +3,7 @@ import { Section } from './section/section';
 import { FeedbackOptions } from './feedbackOptions/feedbackOptions';
 import { Statistics } from './statistics/statistics';
 import { Notification } from './notification/notification';
+import { getKeys, getValues, getEntries } from './utils';
 
 export class App extends Component {
   state = {
@@ -11,8 +12,7 @@ export class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = e => {
-    const option = e.target.textContent;
+  onLeaveFeedback = (option) => {
     this.setState(prevState => {
       return {
         [option]: prevState[option] + 1,
@@ -20,17 +20,9 @@ export class App extends Component {
     });
   };
 
-  getKeys = obj => {
-    return Object.keys(obj);
-  };
-
-  getValues = obj => {
-    return Object.values(obj);
-  };
-
-  getEntries = obj => {
-    return Object.entries(obj);
-  };
+  getKeys = getKeys;
+  getValues = getValues;
+  getEntries = getEntries;
 
   countTotalFeedback = () => {
     const values = this.getValues(this.state);
