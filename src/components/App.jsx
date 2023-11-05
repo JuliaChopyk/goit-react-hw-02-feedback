@@ -20,12 +20,8 @@ export class App extends Component {
     });
   };
 
-  getKeys = getKeys;
-  getValues = getValues;
-  getEntries = getEntries;
-
   countTotalFeedback = () => {
-    const values = this.getValues(this.state);
+    const values = getValues(this.state);
     return values.reduce((total, value) => total + value, 0);
   };
 
@@ -49,7 +45,7 @@ export class App extends Component {
       >
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={this.getKeys(this.state)}
+            options={getKeys(this.state)}
             onLeaveFeedback={this.onLeaveFeedback}
           ></FeedbackOptions>
         </Section>
@@ -58,7 +54,7 @@ export class App extends Component {
             <Notification message="There is no feedback"></Notification>
           ) : (
             <Statistics
-              options={this.getEntries(this.state)}
+              options={getEntries(this.state)}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             ></Statistics>
